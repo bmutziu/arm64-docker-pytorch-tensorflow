@@ -300,7 +300,8 @@ fi
 
 if [[ $build_dev_image ]]; then
   # Stage 4: Adds TensorFlow and Pytorch build with sources
-  docker build $extra_args --target deep-learning-dev -t deep-learning-dev:$image_tag .
+  # docker buildx create --driver-opt env.BUILDKIT_STEP_LOG_MAX_SIZE=1073741824 --driver-opt env.BUILDKIT_STEP_LOG_MAX_SPEED=10240000 --name tp-builder --use
+  docker buildx build $extra_args --target deep-learning-dev -t deep-learning-dev:$image_tag .
 fi
 
 if [[ $build_coding_image ]]; then
